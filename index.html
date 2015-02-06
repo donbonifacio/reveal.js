@@ -294,6 +294,18 @@ end
             <h2>Hash Array Mapped Trie</h2>
             <img src="img/immutability.png">
           </section>
+
+          <section>
+            <h2>When immutable is faster</h2>
+            <pre><code data-trim contenteditable>
+(time (doall (pmap #(Thread/sleep (* % 5000)) [1 1 1])))
+"Elapsed time: 15002.949 msecs"
+
+(time (doall (pmap #(Thread/sleep (* % 5000)) [1 1 1])))
+"Elapsed time: 5001.336 msecs"
+            </code></pre>
+          </section>
+
         </section>
 
         <section>
