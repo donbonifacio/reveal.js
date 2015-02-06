@@ -310,6 +310,36 @@ end
 
         <section>
           <section>
+            <h2>Goodies</h2>
+            <ul>
+              <li>Immutable infrastructure</li>
+              <li>test.check</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>Immutable infrastructure</h2>
+            <ul>
+              <li>Automate the setup and deployment for every part and every layer of your infrastructure.</li>
+              <li>Never change any part of your system once it is deployed. If you need to change it, deploy a new system.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>test.check</h2>
+            <pre><code data-trim contenteditable>
+(defspec first-element-is-min-after-sorting
+  100
+  (prop/for-all [v (gen/not-empty (gen/vector gen/int))]
+    (= (apply min v)
+       (first (sort v)))))
+            </code></pre>
+          </section>
+
+        </section>
+
+        <section>
+          <section>
             <h2>Clojure (Script) in the Wild</h2>
             <p>Who's using it?</p>
           </section>
