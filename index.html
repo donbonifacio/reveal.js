@@ -133,6 +133,99 @@ object ChristmasTree extends DecorationBuilder {
           </section>
         </section>
 
+
+        <section>
+          <section>
+            <h2>What is Clojure?</h2>
+            <ul>
+              <li>A programming language</li>
+              <li>Very young (since 2009)</li>
+              <li>A dialect of LISP</li>
+              <li>Host-focus: JVM, JavaScript, CLR</li>
+              <li>Concurrency-minded</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>Functional programming</h2>
+            <ul>
+              <li>First-class functions</li>
+              <li>Immutable Data Structures</li>
+              <li>Emphasizes recursive iteration instead of side-effect based looping</li>
+              <li>Pure functions</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>Paradigm crash</h2>
+            <p>Comming from the OO world, we need to <strong>learn</strong> a
+            new set of
+            skills to implement trivial stuff.</p>
+          </section>
+
+          <section>
+            <h2>Paradigm crash</h2>
+            <p>Returns the sum of the elements or 42 if any element is 42</p>
+            <pre><code data-trim contenteditable>
+function sup(coll) {
+  var sum = 0;
+  _.each(coll, function(data) {
+    sum += data;
+    if(42 === data) {
+      return 42;
+    }
+  });
+  return sum;
+}
+            </code></pre>
+          </section>
+
+          <section>
+            <h2>Ups!</h2>
+            <pre><code data-trim contenteditable>
+function sup(coll) {
+  var sum = 0;
+  _.each(coll, function(data) {  // forget iteration
+    sum += data;                 // mutation is evil
+    if(42 === data) {
+      return 42;                 // return is not available
+    }
+  });
+  return sum;
+}
+            </code></pre>
+          </section>
+
+          <section>
+            <h2>Clojure v1</h2>
+            <pre><code data-trim contenteditable>
+(defn sup [coll]
+  (or (some #{42} coll) (reduce + coll))
+
+(sup [1 2 3])  ; 6
+(sup [1 42 3]) ; 42
+            </code></pre>
+          </section>
+
+          <section>
+            <h2>Clojure v2</h2>
+            <pre><code data-trim contenteditable>
+(defn sup [acc curr]
+  (if (= curr 42)
+    (reduced 42)
+    (+ acc curr))
+
+(reduce sup [1 2 3])  ; 6
+(reduce sup [1 42 3]) ; 42
+            </code></pre>
+          </section>
+
+          <section>
+            <h2>There be dragonz!</h2>
+            <img src="https://raw.githubusercontent.com/Dobiasd/articles/master/programming_language_learning_curves/lisp.png">
+          </section>
+        </section>
+
         <section>
           <section>
             <h2>Clojure (Script) in the Wild</h2>
