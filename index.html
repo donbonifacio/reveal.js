@@ -131,6 +131,10 @@ object ChristmasTree extends DecorationBuilder {
             <h2>Clojure Mindset</h2>
             <img src="img/tw-clj-mindset.png">
           </section>
+          <section>
+            <h2>Me, Clojure and Myself</h2>
+            <img src="img/gh-obb.png">
+          </section>
         </section>
 
 
@@ -169,7 +173,8 @@ object ChristmasTree extends DecorationBuilder {
             <pre><code data-trim contenteditable>
 function sup(coll) {
   var sum = 0;
-  _.each(coll, function(data) {
+  for(var i = 0; i &lt; coll.length; ++i) {
+    var data = coll[i];
     sum += data;
     if(42 === data) {
       return 42;
@@ -185,7 +190,8 @@ function sup(coll) {
             <pre><code data-trim contenteditable>
 function sup(coll) {
   var sum = 0;
-  _.each(coll, function(data) {  // forget iteration
+  for(var i = 0; i &lt; coll.length; ++i) { // forget iteration
+    var data = coll[i];
     sum += data;                 // mutation is evil
     if(42 === data) {
       return 42;                 // return is not available
@@ -200,7 +206,7 @@ function sup(coll) {
             <h2>Clojure v1</h2>
             <pre><code data-trim contenteditable>
 (defn sup [coll]
-  (or (some #{42} coll) (reduce + coll))
+  (or (some #{42} coll) (reduce + coll)))
 
 (sup [1 2 3])  ; 6
 (sup [1 42 3]) ; 42
@@ -213,7 +219,7 @@ function sup(coll) {
 (defn sup [acc curr]
   (if (= curr 42)
     (reduced 42)
-    (+ acc curr))
+    (+ acc curr)))
 
 (reduce sup [1 2 3])  ; 6
 (reduce sup [1 42 3]) ; 42
@@ -223,6 +229,70 @@ function sup(coll) {
           <section>
             <h2>There be dragonz!</h2>
             <img src="https://raw.githubusercontent.com/Dobiasd/articles/master/programming_language_learning_curves/lisp.png">
+          </section>
+
+        </section>
+
+        <section>
+          <section>
+            <h2>Immutability</h2>
+            <p>Shared mutable state is the root of all evil</p>
+          </section>
+          <section>
+            <h2>Pure functions</h2>
+            <p>A pure function is a function where the return value is only determined by its input values, without observable side effects.</p>
+            <ul>
+              <li>No side effects</li>
+              <li>No I/O</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Not pure</h2>
+            <pre><code data-trim contenteditable>
+def finalize_document(id)
+  invoice = Invoice.find(id)
+  invoice.validate
+  invoice.sign_stuff
+  invoice.change_state
+  invoice.calculate_totals
+  invoice.send_document_to_at
+  invoice.save!
+end
+            </code></pre>
+          </section>
+
+          <section>
+            <h2>More pure</h2>
+            <pre><code data-trim contenteditable>
+def as_finalized(invoice)
+  invoice = invoice.clone()
+  invoice.validate
+  invoice.sign_stuff
+  invoice.change_state
+  invoice.calculate_totals
+  invoice
+end
+
+def finalize_document(id)
+  invoice = Invoice.find(id)
+  finalized = as_finalized(invoice)
+  finalized.send_document_to_at
+  finalized.save!
+end
+            </code></pre>
+          </section>
+
+          <section>
+            <h2>Structural Immutability</h2>
+            <ul>
+              <li>Performance</li>
+              <li>Thread-safety</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>Hash Array Mapped Trie</h2>
+            <img src="img/immutability.png">
           </section>
         </section>
 
