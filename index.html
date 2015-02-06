@@ -298,7 +298,7 @@ end
           <section>
             <h2>When immutable is faster</h2>
             <pre><code data-trim contenteditable>
-(time (doall (pmap #(Thread/sleep (* % 5000)) [1 1 1])))
+(time (doall (map #(Thread/sleep (* % 5000)) [1 1 1])))
 "Elapsed time: 15002.949 msecs"
 
 (time (doall (pmap #(Thread/sleep (* % 5000)) [1 1 1])))
